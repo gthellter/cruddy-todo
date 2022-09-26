@@ -45,7 +45,7 @@ exports.getNextUniqueId = (cb) => {
       count++;
       writeCounter(count, (err, ct) => {
         if (err) {
-          throw 'error returning count'
+          throw ('error returning count');
         } else {
           cb(null, zeroPaddedNumber(ct));
         }
