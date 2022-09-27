@@ -11,16 +11,16 @@ exports.create = (text, callback) => {
 
   counter.getNextUniqueId((err, id) => {
     if (err) {
-      throw ('error getting ID')
+      throw (err, 'error getting ID')
     } else {
-      fs.writeFile('./dataDir/'+ id + '.txt', text, {flag: 'w+'}, (err) => {
+      let destination = path.join(exports.dataDir, id + '.txt');
+      fs.writeFile(destination, text, {flag: 'w+'}, (err) => {
         if (err) {
-          callback(err, {});
+          callback(err, 'error writing file');
         } else {
-          callback(null, id);
+          callback(null, {id, text});
         }
-      });
-    }
+      })}
   });
   // items[id] = text;
   // callback(null, { id, text });
